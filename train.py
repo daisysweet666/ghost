@@ -32,7 +32,7 @@ if __name__ == "__main__":
     Freeze_batch_size = 4
     """解冻阶段训练参数"""
     UnFreeze_Epoch = 400
-    Unfreeze_batch_size = 16
+    Unfreeze_batch_size = 8
     Freeze_Train = False
 
     Init_lr = 1e-2           # 模型的最大学习率

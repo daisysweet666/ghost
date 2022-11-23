@@ -9,7 +9,7 @@ import torch.nn as nn
 
 
 class YOLOLoss(nn.Module):
-    def __init__(self, anchors, num_classes, input_shape, cuda, anchors_mask=[[6, 7, 8], [3, 4, 5], [0, 1, 2]]):
+    def __init__(self, anchors, num_classes, input_shape, cuda=True, anchors_mask=[[6, 7, 8], [3, 4, 5], [0, 1, 2]]):
         super(YOLOLoss, self).__init__()
         # 13特征层anchor是[57,127],[59,130], [62,128]，26是[29,125], [56,121], [61,122]，52是[40,85], [56,81], [61,96]
         self.anchors = anchors

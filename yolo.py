@@ -21,7 +21,7 @@ class YOLO(object):
         "confidence": 0.5,
         "nms_iou": 0.05,
         "letterbox_image": False,  # 是否进行不失真的resize
-        "cuda": False,}
+        "cuda": True,}
 
     @classmethod  # 类方法
     def get_defaults(cls, n):

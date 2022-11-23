@@ -22,13 +22,13 @@ classes_path = '/content/gdrive/MyDrive/Model/ghost/model_data/classes.txt'
 # 用于生成train.txt、val.txt的目标信息，仅在annotation_mode为0和2的时候有效
 train_val_per = 0.9  # 指定(训练集+验证集)与测试集的比例，        (训练集+验证集):测试集 = 9:1
 train_per = 0.9      # 指定(训练集+验证集)中训练集与验证集的比例， 训练集:验证集 = 9:1  仅在annotation_mode为0和1的时候有效
-data_path = '/content/ghost/VOC/uneven/JPEGImages'  # 指向数据集所在的文件夹，默认指向根目录下的数据集
+data_path = '/content/ghost/VOC/uneven/'  # 指向数据集所在的文件夹，默认指向根目录下的数据集
 data_sets = ['train', 'val']
 classes, _ = get_classes(classes_path)
 
 
 def convert_annotation(image_id, list_file):
-    in_file = open(os.path.join(data_path, 'Annotations\%s.xml' % image_id), encoding='utf-8')
+    in_file = open(os.path.join(data_path, 'Annotations/%s.xml' % image_id), encoding='utf-8')
     tree = ET.parse(in_file)
     root = tree.getroot()
 
@@ -92,11 +92,11 @@ if __name__ == "__main__":
     if annotation_mode == 0 or annotation_mode == 2:
         print("Generate my_train.txt and my_val.txt for train.")
         for image_set in data_sets:
-            image_ids = open(os.path.join(data_path, 'ImageSets\Main\%s.txt' % image_set),
+            image_ids = open(os.path.join(data_path, 'ImageSets/Main/%s.txt' % image_set),
                              encoding='utf-8').read().strip().split()
             list_file = open('my_%s.txt' % image_set, 'w', encoding='utf-8')
             for image_id in image_ids:
-                list_file.write('%s\JPEGImages\%s.jpg' % (os.path.abspath(data_path), image_id))
+                list_file.write('%s/JPEGImages/%s.jpg' % (os.path.abspath(data_path), image_id))
 
                 convert_annotation(image_id, list_file)
                 list_file.write('\n')

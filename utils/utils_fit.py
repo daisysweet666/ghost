@@ -1,11 +1,11 @@
 """训练时用到的函数"""
 import torch
 from tqdm import tqdm
-from utils.utils import get_lr
+from .utils import get_lr
 
 
 def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
-                  epoch_step, epoch_step_val, gen, gen_val, Epoch, cuda, save_period):
+                  epoch_step, epoch_step_val, gen, gen_val, Epoch, Cuda, save_period):
     loss = 0
     val_loss = 0
 
@@ -18,7 +18,7 @@ def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
 
             images, targets = batch[0], batch[1]
             with torch.no_grad():
-                if cuda:
+                if Cuda:
                     images = torch.from_numpy(images).type(torch.FloatTensor).cuda()
                     targets = [torch.from_numpy(ann).type(torch.FloatTensor).cuda() for ann in targets]
                 else:
@@ -55,7 +55,7 @@ def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
                 break
             images, targets = batch[0], batch[1]
             with torch.no_grad():
-                if cuda:
+                if Cuda:
                     images = torch.from_numpy(images).type(torch.FloatTensor).cuda()
                     targets = [torch.from_numpy(ann).type(torch.FloatTensor).cuda() for ann in targets]
                 else:
