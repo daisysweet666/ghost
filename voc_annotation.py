@@ -18,10 +18,11 @@ def get_classes(classes_path):
 # annotation_mode=2  代表获得训练用的my_train.txt、my_val.txt
 annotation_mode = 0
 
-classes_path = 'F:/05-pycharm/02-net/model_data/classes.txt'  # 用于生成train.txt、val.txt的目标信息，仅在annotation_mode为0和2的时候有效
+classes_path = '/content/gdrive/MyDrive/Model/ghost/model_data/classes.txt'
+# 用于生成train.txt、val.txt的目标信息，仅在annotation_mode为0和2的时候有效
 train_val_per = 0.9  # 指定(训练集+验证集)与测试集的比例，        (训练集+验证集):测试集 = 9:1
 train_per = 0.9      # 指定(训练集+验证集)中训练集与验证集的比例， 训练集:验证集 = 9:1  仅在annotation_mode为0和1的时候有效
-data_path = 'F:/05-pycharm/02-net/mydata'  # 指向数据集所在的文件夹，默认指向根目录下的数据集
+data_path = '/content/ghost/VOC/uneven/JPEGImages'  # 指向数据集所在的文件夹，默认指向根目录下的数据集
 data_sets = ['train', 'val']
 classes, _ = get_classes(classes_path)
 

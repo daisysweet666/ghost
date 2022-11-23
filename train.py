@@ -16,9 +16,9 @@ from utils.utils_fit import fit_one_epoch
 '''训练好的权值文件保存在logs文件夹中，每个epoch都会保存一次，按默认参数训练完会有100个权值
 损失值的大小用于判断是否收敛，训练过程中的损失值会保存在logs文件夹下的loss_%Y_%m_%d_%H_%M_%S文件夹中'''
 if __name__ == "__main__":
-    Cuda = False
-    classes_path = 'F:/05-pycharm/02-net/model_data/classes.txt'
-    anchors_path = 'F:/05-pycharm/02-net/model_data/9anchors.txt'
+    Cuda = True
+    classes_path = '/content/gdrive/MyDrive/Model/ghost/model_data/classes.txt'
+    anchors_path = '/content/gdrive/MyDrive/Model/ghost/model_data/9anchors.txt'
     anchors_mask = [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
     # 如果训练过程中存在中断训练的操作，可以将model_path设置成logs文件夹下的权值文件，将已经训练了一部分的权值再次载入。
     # 同时修改下方的 冻结阶段 或者 解冻阶段 的参数，来保证模型epoch的连续性。
@@ -31,9 +31,9 @@ if __name__ == "__main__":
     Freeze_Epoch = 50
     Freeze_batch_size = 4
     """解冻阶段训练参数"""
-    UnFreeze_Epoch = 100
-    Unfreeze_batch_size = 2
-    Freeze_Train = True
+    UnFreeze_Epoch = 400
+    Unfreeze_batch_size = 16
+    Freeze_Train = False
 
     Init_lr = 1e-2           # 模型的最大学习率
     Min_lr = Init_lr * 0.01  # 模型的最小学习率，默认为最大学习率的0.01
@@ -41,11 +41,11 @@ if __name__ == "__main__":
     momentum = 0.937         # 优化器内部使用到的momentum参数
     weight_decay = 5e-4      # 权值衰减，可防止过拟合
     lr_decay_type = "cos"    # 使用到的学习率下降方式，可选的有step、cos
-    save_period = 2          # 多少个epoch保存一次权值，默认每个世代都保存
+    save_period = 50          # 多少个epoch保存一次权值，默认每个世代都保存
     num_workers = 2          # 设置是否使用多线程读取数据
 
-    train_annotation_path = 'F:/05-pycharm/02-net/model_data/my_train.txt'
-    val_annotation_path = 'F:/05-pycharm/02-net/model_data/my_val.txt'                 # 获得图片路径和标签
+    train_annotation_path = '/content/gdrive/MyDrive/Model/ghost/model_data/my_train.txt'
+    val_annotation_path = '/content/gdrive/MyDrive/Model/ghost/model_data/my_val.txt'                 # 获得图片路径和标签
     class_names, num_classes = get_classes(classes_path)
     anchors, num_anchors = get_anchors(anchors_path)   # 获取classes和anchor
 
